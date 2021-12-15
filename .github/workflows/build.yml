@@ -21,6 +21,8 @@ jobs:
           node-version: '12'
       - name: Install
         run: npm i
+      - name: Log
+        run: echo "GIT_COMMIT; ${GIT_COMMIT}"
       - name: Test
         run: GIT_BRANCH=${GITHUB_REF:11} make test
 
