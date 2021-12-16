@@ -12,6 +12,12 @@ const server = app.listen("8080");
 
 describe("Pact Verification", () => {
   it("validates the expectations of ProductService", () => {
+
+    console.log(`MyTestMessage: process.env.GIT_COMMIT: ${process.env.GIT_COMMIT}`)
+    console.log(`MyTestMessage: process.env.GIT_BRANCH: ${process.env.GIT_BRANCH}`)
+    console.log(`MyTestMessage: process.env.PACT_URL: ${process.env.PACT_URL}`)
+
+
     const baseOpts = {
       logLevel: "INFO",
       providerBaseUrl: "http://localhost:8080",
@@ -26,6 +32,8 @@ describe("Pact Verification", () => {
     const pactChangedOpts = {
       pactUrls: [process.env.PACT_URL]
     }
+
+    console.log("MyTestMessage")
 
     // For 'normal' provider builds, fetch `master` and `prod` pacts for this provider
     const fetchPactsDynamicallyOpts = {
@@ -67,6 +75,8 @@ describe("Pact Verification", () => {
       req.headers["authorization"] = `Bearer ${new Date().toISOString()}`;
       next();
     }
+
+    console.log(`MyTestMessage: process.env.PACT_URL: ${process.env.PACT_URL}`)
 
     const opts = {
       ...baseOpts,
